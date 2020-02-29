@@ -1,24 +1,22 @@
 from flask import Flask, request
+from rpi_utils import PiDoorBellGPIOHelper
 
 DEFAULT_OPEN_DOOR_PUSH_SECONDS = 5
 
 app = Flask(__name__)
+gpioHelper = PiDoorBellGPIOHelper()
 
 
 @app.route("/open_door/release", methods=["POST"])
 def open_door_release():
+    gpioHelper.release()
     return "Released to open door"
 
 
 @app.route("/open_door/push", methods=["POST"])
 def open_door_push():
-    body = request.get_json()
-    if body is not None and "seconds" in body:
-        seconds = int(body["seconds"])
-    else:
-        seconds = DEFAULT_OPEN_DOOR_PUSH_SECONDS
-
-    return f"Pushing to open door during {seconds} seconds"
+    gpioHelper.push()
+    return f"Pushing to open door"
 
 
 @app.route("/")
