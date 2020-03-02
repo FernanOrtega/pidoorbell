@@ -15,7 +15,7 @@ WorkingDirectory=/home/pi/pidoorbell/server
 Environment="PATH=/home/pi/pidoorbell/server"
 
 # We'll then specify the commanded to start the service
-ExecStart=gunicorn --workers 2 --bind unix:app.sock -m 007 app:app
+ExecStart=gunicorn --workers 2 --log-file=stderr.log --bind unix:app.sock -m 007 app:app
 
 [Install]
 WantedBy=multi-user.target
