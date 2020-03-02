@@ -1,9 +1,12 @@
 #!/bin/bash
 # App requirements
-yes w | pip3 install -r requirements.txt
+yes | pip3 install -r requirements.txt
 
 # Configure gunicorn server as a system service
 cp gunicorn/pidoorbellserver.service /etc/systemd/system/
+
+# Enable app
+systemctl enable pidoorbellserver
 
 # Start the service
 systemctl start pidoorbellserver
@@ -16,3 +19,9 @@ cp ./nginx/pidoorbellserver /etc/nginx/sites-available/pidoorbellserver
 
 # Enable server block:
 ln -s /etc/nginx/sites-available/pidoorbellserverc /etc/nginx/sites-enabled
+
+# Remove default site
+rm /etc/nginx/sites-enabled/default
+
+# Reload nginx
+systemctl restart nginx
