@@ -1,6 +1,6 @@
 #!/bin/bash
 # App requirements
-pip3 install -r requirements.txt
+pip3 install -y -r requirements.txt
 
 # Configure gunicorn server as a system service
 cp gunicorn/pidoorbellserver.service /etc/systemd/system/
