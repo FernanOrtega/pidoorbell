@@ -6,7 +6,7 @@ pip3 install -r requirements.txt
 cp gunicorn/pidoorbellserver.service /etc/systemd/system/
 
 # Start the service
-systemctl pidoorbellserver start
+systemctl start pidoorbellserver
 
 # Install nginx and configure it
 apt install -y nginx

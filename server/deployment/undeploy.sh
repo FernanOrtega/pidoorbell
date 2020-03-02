@@ -3,8 +3,8 @@
 systemctl stop nginx
 
 # Remove nginx
-apt-get purge nginx nginx-common
-apt-get autoremove
+apt-get purge -y nginx nginx-common
+apt-get autoremove -y
 rm -rf /etc/nginx
 rm -rf /etc/init.d/nginx
 rm -rf /etc/default/nginx
@@ -23,7 +23,7 @@ systemctl stop pidoorbellserver
 systemctl disable pidoorbellserver
 
 # Remove gunicorn configuration
-rm -y /etc/systemd/system/pidoorbellserver.service
+rm -f /etc/systemd/system/pidoorbellserver.service
 
 # Uninstall requirements
-pip3 uninstall -r requirements.txt
+pip3 uninstall -y -r requirements.txt
