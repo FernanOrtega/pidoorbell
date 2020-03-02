@@ -18,7 +18,7 @@ apt install -y nginx
 cp ./nginx/pidoorbellserver /etc/nginx/sites-available/pidoorbellserver
 
 # Enable server block:
-ln -s /etc/nginx/sites-available/pidoorbellserverc /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/pidoorbellserver /etc/nginx/sites-enabled
 
 # Remove default site
 rm /etc/nginx/sites-enabled/default
