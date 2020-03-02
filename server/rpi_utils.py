@@ -64,8 +64,12 @@ class PiDoorBellGPIOHelper:
         gpio.output(self.__open_door_pin, gpio.LOW)
 
         self.__scheduler.start()
-        # Shut down the scheduler when exiting the app
-        atexit.register(lambda: self.__scheduler.shutdown())
+        atexit.register(lambda: self.clean_app())
+
+    # Shut down the scheduler when exiting the app
+    def clean_app(self):
+        self.__scheduler.shutdown()
+        gpio.cleanup()
 
     def push(self):
         gpio.output(self.__open_door_pin, gpio.HIGH)
